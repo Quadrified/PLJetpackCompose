@@ -10,7 +10,7 @@ fun AllJetpackComposeBasics() {
 
     // TextStylingPreview()
 
-    ComposeStatePreview()
+    ComposeState()
 
 }
 
