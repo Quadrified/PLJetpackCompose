@@ -45,8 +45,9 @@ fun TextStyling(modifier: Modifier = Modifier) {
             fontStyle = FontStyle.Italic,
             textAlign = TextAlign.Center,
             textDecoration = TextDecoration.LineThrough,
-
-            )
+            letterSpacing = 2.sp,
+            lineHeight = 28.sp,
+        )
     }
 
 }
