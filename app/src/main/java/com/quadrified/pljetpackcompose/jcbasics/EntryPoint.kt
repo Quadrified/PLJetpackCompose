@@ -14,6 +14,8 @@ fun AllJetpackComposeBasics() {
 
     // SimpleAnimations()
 
+    // ScaffoldExample()
+
 }
 
 @Preview(showSystemUi = true)
