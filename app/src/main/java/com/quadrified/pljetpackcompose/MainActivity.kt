@@ -8,32 +8,46 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.lifecycleScope
 import com.quadrified.pljetpackcompose.ui.theme.PLJetpackComposeTheme
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Global => alive as long as the app
-        GlobalScope.launch {
-//            Log.d("coroutine", "GlobalScope1: ${Thread.currentThread().name}")
-            getAPIData()
+        GlobalScope.launch(Dispatchers.Main) {
+            Log.d("coroutine", "Dispatchers.Main: ${Thread.currentThread().name}")
         }
 
-        GlobalScope.launch {
-            getAPIData2()
+        GlobalScope.launch(Dispatchers.IO) {
+            // IO => For I/O operations, for API calls
+            getAPIData()
+            Log.d("coroutine", "Dispatchers.IO: ${Thread.currentThread().name}")
+
+            // Switching context
+            withContext(Dispatchers.Main) {
+                // Update UI in "main" thread
+                Log.d("coroutine", "Dispatchers.Main: ${Thread.currentThread().name}")
+            }
+        }
+
+        GlobalScope.launch(Dispatchers.Default) {
+            Log.d("coroutine", "Dispatchers.Default: ${Thread.currentThread().name}")
+        }
+
+        GlobalScope.launch(Dispatchers.Unconfined) {
+            Log.d("coroutine", "Dispatchers.Unconfined: ${Thread.currentThread().name}")
         }
 
         // lifecycleScope => alive as long as the activity
-        lifecycleScope.launch {
-            Log.d("coroutine", "lifecycleScope: ${Thread.currentThread().name}")
-        }
-
-        Log.d("coroutine", "lifecycleScope: ${Thread.currentThread().name}")
+//        lifecycleScope.launch {
+//            Log.d("coroutine", "lifecycleScope: ${Thread.currentThread().name}")
+//        }
 
 
         setContent {
