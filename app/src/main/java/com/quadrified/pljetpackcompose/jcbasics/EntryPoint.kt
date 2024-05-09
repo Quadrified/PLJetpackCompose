@@ -6,6 +6,8 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun AllJetpackComposeBasics() {
 
+    // Layouts()
+
     // ImageCardPreview()
 
     // TextStylingPreview()
@@ -15,6 +17,7 @@ fun AllJetpackComposeBasics() {
     // SimpleAnimations()
 
     // ScaffoldExample()
+
 
 }
 
